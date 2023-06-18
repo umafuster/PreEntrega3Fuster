@@ -1,0 +1,45 @@
+header {
+    background-color: rgb(130, 130, 130);
+    padding: 30px;
+    margin-top: 0px;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.9;
+  }
+
+  .Logo {
+    height: 70px;
+    width: 70px;
+  }
+
+  .nav-link {
+    color: black;
+  }
+
+  * {
+    font-family: 'Brygada 1918', serif;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+a {
+
+    text-decoration-line: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    margin-left: 30px;
+
+}
+
+body{
+    background-color: rgb(200, 215, 254);
+}
