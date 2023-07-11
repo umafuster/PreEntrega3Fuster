@@ -70,6 +70,7 @@ function compuesto(){
     beneficio = beneficio / 100;
     capParcial = (1 + beneficio);
     capitalFinal = capitalInicial * Math.pow(capParcial, tiempo);
+    capitalFinal = capitalFinal.toFixed(2);
     usuario.push(capitalFinal);
 }
 
@@ -77,6 +78,7 @@ function compuesto(){
 function simple() {
     beneficio = beneficio / 100;
     capitalFinal = capitalInicial * (1 + (beneficio / 100));
+    capitalFinal = capitalFinal.toFixed(2);
     usuario.push(capitalFinal)  
 }
 
@@ -87,7 +89,7 @@ function finalizacion() {
     console.log(usuario)
 }
 
-// Funcion para ver si la inversion duplico el capital inicial
+
 
       
   
@@ -102,7 +104,7 @@ ingresarCapital();
 tasaBeneficio();
 plazoTiempo();
 seleccionarOperacion();
-finalizacion();
+//finalizacion();
 console.log(usuario.join("-"));
 
 
