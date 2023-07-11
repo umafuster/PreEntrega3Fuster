@@ -87,6 +87,12 @@ function finalizacion() {
     console.log(usuario)
 }
 
+// Funcion para ver si la inversion duplico el capital inicial
+
+      
+  
+
+
 
 
 // LLAMADOS 
@@ -97,5 +103,6 @@ tasaBeneficio();
 plazoTiempo();
 seleccionarOperacion();
 finalizacion();
+console.log(usuario.join("-"));
 
-console.log(typeof capitalFinal);
+
