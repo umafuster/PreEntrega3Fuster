@@ -77,7 +77,7 @@ function compuesto(){
 // Funcion Interes Simple
 function simple() {
     beneficio = beneficio / 100;
-    capitalFinal = capitalInicial * (1 + (beneficio / 100)* tiempo);
+    capitalFinal = capitalInicial * (1 + beneficio * tiempo);
     capitalFinal = capitalFinal.toFixed(2);
     usuario.push(capitalFinal)  
 }
