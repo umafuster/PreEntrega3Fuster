@@ -1,45 +1,94 @@
 header {
-    background-color: rgb(130, 130, 130);
-    padding: 30px;
-    margin-top: 0px;
-    display: flex;
-    justify-content: space-between;
-    opacity: 0.9;
-  }
+  background-color: rgb(30, 30, 30);
+  padding: 30px;
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+  opacity: 0.9;
+}
 
-  .Logo {
-    height: 70px;
-    width: 70px;
-  }
+.Logo {
+  height: 70px;
+  width: 80px;
+}
 
-  .nav-link {
-    color: black;
-  }
+.nav-link {
+  color: black;
+}
 
-  * {
-    font-family: 'Brygada 1918', serif;
-    margin: 0;
-    padding: 0;
+* {
+  font-family: 'Brygada 1918', serif;
+  margin: 0;
+  padding: 0;
 }
 
 ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
 
 }
 
 a {
 
-    text-decoration-line: none;
-    text-decoration: none;
-    display: flex;
-    justify-content: space-between;
-    color: black;
-    margin-left: 30px;
+  text-decoration-line: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  margin-left: 30px;
 
 }
 
-body{
-    background-color: rgb(200, 215, 254);
+body {
+  background-color: rgb(200, 215, 254);
+}
+
+
+
+/* Input y Botones */
+input {
+  height: 20px;
+  width: 200px;
+}
+
+.btn-calculo {
+  height: 40px;
+  width: 100px;
+}
+
+/* Fin Input y Botones */
+
+
+
+/* Posicionamiento de los div */
+
+/* div {
+  display: flex;
+  justify-content: center;
+  justify-items: ;
+} */
+
+div {
+  display: flex;
+  justify-content: center;
+  /*   flex-direction: column;
+  justify-content: space-between; 
+  height: 50px; */
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+ 
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+section {
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
