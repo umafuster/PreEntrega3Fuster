@@ -1,3 +1,4 @@
+/*
 // DEFINICIONES
 
 let nombre;
@@ -91,12 +92,6 @@ function finalizacion() {
 
 
 
-      
-  
-
-
-
-
 // LLAMADOS 
 
 ingresoUsuario();
@@ -106,5 +101,49 @@ plazoTiempo();
 seleccionarOperacion();
 //finalizacion();
 console.log(usuario.join("-"));
+*/
 
 
+// DOM
+contenedor = document.querySelector(".contenedor"); 
+
+
+contenedor.innerHTML += `
+
+
+<div>
+    <h2>Nombre</h2>
+    <input type="text">
+</div>
+
+<div>
+    <h2>Apellido</h2>
+    <input type="text">
+</div>
+
+<div>
+    <h2>Capital a invertir</h2>
+    <input type="number">
+</div>
+
+
+<div>
+    <h2>Duración de la inversión en meses</h2>
+    <input type="number">
+</div>
+
+
+<div>
+    <h2>Interés mensual</h2>
+    <input type="number">
+</div>
+
+
+<nav class="contenedor-opciones">
+    <button class="btn-calculo">Calcular a interés compuesto</button>
+    <button class="btn-calculo">Calcular a interés simple</button>
+</nav>
+
+
+
+`
