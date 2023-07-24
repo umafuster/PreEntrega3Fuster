@@ -12,9 +12,6 @@ header {
   width: 80px;
 }
 
-.nav-link {
-  color: black;
-}
 
 * {
   font-family: 'Brygada 1918', serif;
@@ -22,23 +19,7 @@ header {
   padding: 0;
 }
 
-ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
 
-}
-
-a {
-
-  text-decoration-line: none;
-  text-decoration: none;
-  display: flex;
-  justify-content: space-between;
-  color: black;
-  margin-left: 30px;
-
-}
 
 body {
   background-color: rgb(200, 215, 254);
@@ -53,33 +34,47 @@ input {
 }
 
 .btn-calculo {
+  display: flex;
+  justify-content: space-between;
   height: 40px;
   width: 100px;
+}
+
+.btn-enviar {
+  height: 30px;
+  width: 70px;
+  display: grid;
+  place-items: center;
+  margin: auto;
+  margin-bottom: 40px;
 }
 
 /* Fin Input y Botones */
 
 
 
-/* Posicionamiento de los div */
+/* Posicionamiento de los div y del section */
 
-/* div {
+section {
+  margin-top: 5%;
+  margin-bottom: 5%;
   display: flex;
   justify-content: center;
-  justify-items: ;
-} */
-
-div {
-  display: flex;
-  justify-content: center;
-  /*   flex-direction: column;
-  justify-content: space-between; 
-  height: 50px; */
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
- 
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  height: 100px;
+  width: 200px;
 }
 
 nav {
@@ -88,7 +83,11 @@ nav {
 
 }
 
-section {
-  margin-top: 5%;
-  margin-bottom: 5%;
+
+/* FONTS */
+h2 {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: lighter;
 }
+
+/* FIN FONTS */
