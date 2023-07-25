@@ -1,14 +1,9 @@
 // DEFINICIONES
-//let nombre;
-//let apellido;
 let usuario = [];
-//let capital;
-//let interes;
-//let meses;
-//let capitalFinal;
+let capitalFinal;
 
 // DOM
-contenedor = document.querySelector(".contenedor"); 
+contenedor = document.querySelector(".contenedor");
 contenedor.innerHTML += `
 
 
@@ -42,16 +37,12 @@ contenedor.innerHTML += `
 <button class="btn-enviar" onClick="obtenerDatos()">Enviar</button>
 
 <nav class="contenedor-opciones">
-<button class="btn-calculo btn-calculo-compuesto" onClick="interesCompuesto()">Calcular a interés
-    compuesto</button>
-<button class="btn-calculo btn-calculo-simple" onClick="interesSimple()">Calcular a interés simple</button>
+<button class="btn-calculo btn-calculo-compuesto" onClick="interesCompuesto() mostrarResultados()">Calcular a interés compuesto</button>
+<button class="btn-calculo btn-calculo-simple" onClick="interesSimple() mostrarResultados()">Calcular a interés simple</button>
 </nav>
 
 `
 // Fin DOM
-
-
-// Funcion para tener los datos
 
 const obtenerDatos = function () {
     const nombre = document.querySelector(".input-nombre").value;
@@ -60,8 +51,23 @@ const obtenerDatos = function () {
     const meses = document.querySelector(".input-meses").value;
     const interes = document.querySelector(".input-interes").value;
     usuario.push(nombre, apellido, capital, meses, interes);
-    console.log(usuario);
+    // Llamado a la funcion almacenarDatos
+    almacenarDatos();
 }
+
+
+
+// JSON Y STORAGE
+function almacenarDatos() {
+    localStorage.setItem("nombre", document.querySelector(".input-nombre").value);
+    localStorage.setItem("apellido", document.querySelector(".input-apellido").value);
+    localStorage.setItem("capital", document.querySelector(".input-capital").value);
+    localStorage.setItem("meses", document.querySelector(".input-meses").value);
+    localStorage.setItem("interes", document.querySelector(".input-interes").value);
+    localStorage.setItem("capitalFinal", capitalFinal);
+    localStorage.setItem("usuario", usuario);
+}
+// FIN JSON Y STORAGE
 
 
 
@@ -72,10 +78,10 @@ const interesCompuesto = function () {
     let interes = document.querySelector(".input-interes").value;
     interes = interes / 100;
     let capParcial = 1 + interes;
-    let capitalFinal = capital * Math.pow(capParcial, meses);
+    capitalFinal = capital * Math.pow(capParcial, meses);
     capitalFinal = capitalFinal.toFixed(2);
+    localStorage.setItem("capitalFinal", capitalFinal);
     usuario.push(capitalFinal);
-    console.log(usuario);
 }
 
 
@@ -88,6 +94,84 @@ const interesSimple = function () {
     interes = interes / 100;
     capitalFinal = capital * (1 + interes * meses);
     capitalFinal = capitalFinal.toFixed(2);
+    localStorage.setItem("capitalFinal", capitalFinal);
     usuario.push(capitalFinal)
-    console.log(usuario);
 }
+
+
+// MOSTRAR LOS DATOS
+
+function mostrarResultados() {
+    const nombre = localStorage.getItem('nombre');
+    const apellido = localStorage.getItem('apellido');
+    const capital = localStorage.getItem('capital');
+    const meses = localStorage.getItem('meses');
+    const interes = localStorage.getItem('interes');
+    const capitalFinal = localStorage.getItem('capitalFinal');
+
+    const datos = `Nombre: ${nombre}\nApellido: ${apellido}\nCapital: ${capital}\nMeses: ${meses}\nInteres: ${interes}\nCapital Final: ${capitalFinal}`;
+    alert(datos);
+}
+// FIN MOSTRAR LOS DATOS
+
+
+// EVENTO PARA QUE APAREZCAN LOS RESULTADOS
+document.querySelector(".btn-calculo-compuesto").addEventListener("click", function () {
+    interesCompuesto();
+    mostrarResultados();
+});
+
+document.querySelector(".btn-calculo-simple").addEventListener("click", function () {
+    interesSimple();
+    mostrarResultados();
+});
+
+
+// Agrego un Ciclo para que el usuario pueda hacer otro calculo sin hacer reload
+
+
+function realizarOtroCalculo() {
+    do {
+        refresh = document.querySelector('.refresh');
+        refresh.addEventListener('click', location.reload());
+        }
+    
+    while (document.querySelector(".refresh").addEventListener("click"));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* // Limpio Inputs
+function limpiarInputs() {
+    document.querySelector(".input-nombre").value = "";
+    document.querySelector(".input-apellido").value = "";
+    document.querySelector(".input-capital").value = "";
+    document.querySelector(".input-meses").value = "";
+    document.querySelector(".input-interes").value = "";
+}
+
+// Funcion
+function realizarCalculos() {
+    do {
+        obtenerDatos(); 
+        interesCompuesto(); 
+        interesSimple(); 
+        mostrarResultados(); 
+        limpiarInputs();
+    } while (confirm("¿Desea realizar otro cálculo?") == true);
+}
+
+document.querySelector(".btn-otroCalculo").addEventListener("click", realizarCalculos);
+
+// FIN */
