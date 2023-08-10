@@ -7,29 +7,29 @@ contenedor = document.querySelector(".contenedor");
 contenedor.innerHTML += `
 
 
-<div>
+<div class="completar-container">
 <h2>Nombre</h2>
 <input type="text" class="input-nombre">
 </div>
 
-<div>
+<div class="completar-container">
 <h2>Apellido</h2>
 <input type="text" class="input-apellido">
 </div>
 
-<div>
+<div class="completar-container">
 <h2>Capital a invertir</h2>
 <input type="number" class="input-capital">
 </div>
 
 
-<div>
+<div class="completar-container">
 <h2>Duración de la inversión en meses</h2>
 <input type="number" class="input-meses">
 </div>
 
 
-<div>
+<div class="completar-container">
 <h2>Interés mensual</h2>
 <input type="number" class="input-interes">
 </div>
@@ -59,13 +59,8 @@ const obtenerDatos = function () {
 
 // JSON Y STORAGE
 function almacenarDatos() {
-    localStorage.setItem("nombre", document.querySelector(".input-nombre").value);
-    localStorage.setItem("apellido", document.querySelector(".input-apellido").value);
-    localStorage.setItem("capital", document.querySelector(".input-capital").value);
-    localStorage.setItem("meses", document.querySelector(".input-meses").value);
-    localStorage.setItem("interes", document.querySelector(".input-interes").value);
+    localStorage.setItem("usuario", JSON.stringify(usuario));
     localStorage.setItem("capitalFinal", capitalFinal);
-    localStorage.setItem("usuario", usuario);
 }
 // FIN JSON Y STORAGE
 
@@ -81,7 +76,7 @@ const interesCompuesto = function () {
     capitalFinal = capital * Math.pow(capParcial, meses);
     capitalFinal = capitalFinal.toFixed(2);
     localStorage.setItem("capitalFinal", capitalFinal);
-    usuario.push(capitalFinal);
+    // usuario.push(capitalFinal);
 }
 
 
@@ -95,22 +90,28 @@ const interesSimple = function () {
     capitalFinal = capital * (1 + interes * meses);
     capitalFinal = capitalFinal.toFixed(2);
     localStorage.setItem("capitalFinal", capitalFinal);
-    usuario.push(capitalFinal)
+    //usuario.push(capitalFinal)
 }
 
 
 // MOSTRAR LOS DATOS
-
 function mostrarResultados() {
-    const nombre = localStorage.getItem('nombre');
-    const apellido = localStorage.getItem('apellido');
-    const capital = localStorage.getItem('capital');
-    const meses = localStorage.getItem('meses');
-    const interes = localStorage.getItem('interes');
-    const capitalFinal = localStorage.getItem('capitalFinal');
+    const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
+    const capitalFinal = localStorage.getItem("capitalFinal");
+    const [nombre, apellido, capital, meses, interes] = usuarioGuardado;
+    const datos = `
+    Nombre: ${nombre}
+    Apellido: ${apellido}
+    Capital: ${capital}
+    Meses: ${meses}
+    Interes: ${interes}
+    Capital Final: ${capitalFinal}`;
 
-    const datos = `Nombre: ${nombre}\nApellido: ${apellido}\nCapital: ${capital}\nMeses: ${meses}\nInteres: ${interes}\nCapital Final: ${capitalFinal}`;
-    alert(datos);
+    Swal.fire({
+        html: `<pre>${datos}</pre>`,
+        position: "top",
+        confirmButtonText: "Volver"
+    });
 }
 // FIN MOSTRAR LOS DATOS
 
@@ -128,50 +129,14 @@ document.querySelector(".btn-calculo-simple").addEventListener("click", function
 
 
 // Agrego un Ciclo para que el usuario pueda hacer otro calculo sin hacer reload
-
-
 function realizarOtroCalculo() {
     do {
         refresh = document.querySelector('.refresh');
         refresh.addEventListener('click', location.reload());
-        }
-    
+    }
+
     while (document.querySelector(".refresh").addEventListener("click"));
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* // Limpio Inputs
-function limpiarInputs() {
-    document.querySelector(".input-nombre").value = "";
-    document.querySelector(".input-apellido").value = "";
-    document.querySelector(".input-capital").value = "";
-    document.querySelector(".input-meses").value = "";
-    document.querySelector(".input-interes").value = "";
-}
-
-// Funcion
-function realizarCalculos() {
-    do {
-        obtenerDatos(); 
-        interesCompuesto(); 
-        interesSimple(); 
-        mostrarResultados(); 
-        limpiarInputs();
-    } while (confirm("¿Desea realizar otro cálculo?") == true);
-}
-
-document.querySelector(".btn-otroCalculo").addEventListener("click", realizarCalculos);
-
-// FIN */
+/* FIN */
