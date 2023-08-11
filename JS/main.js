@@ -59,6 +59,7 @@ contenedor.innerHTML += `
 `
 // Fin DOM
 
+// Funcion Obtencion de Datos
 const obtenerDatos = function () {
     const nombre = document.querySelector(".input-nombre").value;
     const apellido = document.querySelector(".input-apellido").value;
@@ -67,13 +68,6 @@ const obtenerDatos = function () {
     const interes = document.querySelector(".input-interes").value;
     usuario.push(nombre, apellido, capital, meses, interes);
 }
-
-// JSON Y STORAGE
-/* function almacenarDatos() {
-    localStorage.setItem("usuario", JSON.stringify(usuario));
-    localStorage.setItem("capitalFinal", capitalFinal);
-} */
-// FIN JSON Y STORAGE
 
 
 
@@ -102,6 +96,18 @@ const interesSimple = function () {
     localStorage.setItem("capitalFinal", capitalFinal);
 }
 
+// JSON Y STORAGE
+function almacenarDatos() {
+    localStorage.setItem("nombre", document.querySelector(".input-nombre").value);
+    localStorage.setItem("apellido", document.querySelector(".input-apellido").value);
+    localStorage.setItem("capital", document.querySelector(".input-capital").value);
+    localStorage.setItem("meses", document.querySelector(".input-meses").value);
+    localStorage.setItem("beneficio", document.querySelector(".input-interes").value);
+    localStorage.setItem("capitalFinal", capitalFinal);
+    localStorage.setItem("usuario", usuario);
+}
+// FIN JSON Y STORAGE
+
 // Calcular a Dolares
 function convertirADolar(){
    const usdMoneda = monedas.USD.exchangeRate;
@@ -122,9 +128,12 @@ function convertirAEuro(){
 
 // MOSTRAR LOS DATOS
 function mostrarResultados() {
-    const usuarioGuardado = localStorage.getItem("usuario");
-    const capitalFinal = localStorage.getItem("capitalFinal");
-    const [nombre, apellido, capital, meses, interes] = usuarioGuardado;
+    const nombre = localStorage.getItem('nombre')
+    const apellido = localStorage.getItem('apellido')
+    const capital = localStorage.getItem('capital')
+    const meses = localStorage.getItem('meses')
+    const interes = localStorage.getItem('interes')
+    const capitalFinal = localStorage.getItem('capitalFinal')
     const datos = `
     Nombre: ${nombre}
     Apellido: ${apellido}
