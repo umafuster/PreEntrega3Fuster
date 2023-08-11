@@ -93,7 +93,6 @@ const interesCompuesto = function () {
     capitalFinal = capital * Math.pow(capParcial, meses);
     capitalFinal = capitalFinal.toFixed(2);
     localStorage.setItem("capitalFinal", capitalFinal);
-    // usuario.push(capitalFinal);
 }
 
 
@@ -107,7 +106,6 @@ const interesSimple = function () {
     capitalFinal = capital * (1 + interes * meses);
     capitalFinal = capitalFinal.toFixed(2);
     localStorage.setItem("capitalFinal", capitalFinal);
-    //usuario.push(capitalFinal)
 }
 
 // Convertir a Dolares
@@ -176,7 +174,5 @@ function realizarOtroCalculo() {
 
     while (document.querySelector(".refresh").addEventListener("click"));
 }
-
-
 
 /* FIN */
