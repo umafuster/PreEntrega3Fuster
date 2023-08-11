@@ -1,0 +1,12 @@
+{
+    "USD": {
+        "name": "United States Dollar",
+        "symbol": "U$D",
+        "exchangeRate": 605
+    },
+    "EUR": {
+        "name": "Euro",
+        "symbol": "€",
+        "exchangeRate": 658
+    }
+}

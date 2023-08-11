@@ -1,32 +1,21 @@
 // DEFINICIONES
 let usuario = [];
 let capitalFinal;
-let tasaDeCambio;
-let capitalDolar;
+let monedas;
+let capitalConvertido;
 
-// Tasa de Conversion a Dolares desde una API
-function apiTasaDeCambio() {
-    fetch('https://currency-converter5.p.rapidapi.com/currency/convert?format=json&from=ARG&to=USD', {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '211ab785dfmsh2483a39879c7d27p1182c3jsnad0abb0279a7',
-            'X-RapidAPI-Host': 'currency-converter5.p.rapidapi.com'
-        }
-    })
-
-
-    .then(response => response.json())
-    .then(data => {
-        tasaDeCambio = data.rates.USD;
-        localStorage.setItem("tasaDeCambio", tasaDeCambio);
-        })
-    .catch (error => {
-        console.error(error);
-    });
+// Funcion para cargar las monedas del JSON
+async function cargarMonedas(){
+    try{
+        const response = await fetch('monedas.json');
+        monedas = await response.json();
+    }catch(error){
+        console.error('Error al cargar las monedas:', error);
+    }
 }
 
-// Tener la tasa luego de cargar DOM
-document.addEventListener("DOMContentLoaded", apiTasaDeCambio);
+// Llamado a la funcion
+cargarMonedas();
 
 // DOM
 contenedor = document.querySelector(".contenedor");
@@ -71,9 +60,6 @@ contenedor.innerHTML += `
 // Fin DOM
 
 
-
-
-
 // JSON Y STORAGE
 function almacenarDatos() {
     localStorage.setItem("usuario", JSON.stringify(usuario));
@@ -108,31 +94,30 @@ const interesSimple = function () {
     localStorage.setItem("capitalFinal", capitalFinal);
 }
 
-// Convertir a Dolares
-function convertirADolares() {
-    tasaDeCambio = localStorage.getItem("tasaDeCambio");
-    if (tasaDeCambio !== "0") {
-        capitalDolar = capitalFinal / tasaDeCambio;
-        localStorage.setItem("capitalDolar", capitalDolar);
-    } else {
-        capitalDolar = 0;
-    }
-
+// Calcular a Dolares
+function convertirADolar(){
+   const usdMoneda = monedas.USD.exchangeRate;
+   capitalConvertido = capitalFinal / usdMoneda;
+   localStorage.setItem("capitalConvertido", capitalConvertido);
+   mostrarResultados();   
 }
+
+// Calcular a Euros
+function convertirAEuro(){
+    const eurMoneda = monedas.EUR.exchangeRate;
+    capitalConvertido = capitalFinal / eurMoneda;
+    localStorage.setItem("capitalConvertido", capitalConvertido);   
+    mostrarResultados();
+ }
+// FIN calcular monedas
 
 
 // MOSTRAR LOS DATOS
 function mostrarResultados() {
     const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
     const capitalFinal = localStorage.getItem("capitalFinal");
-    const capitalDolar = localStorage.getItem("capitalDolar");
     const [nombre, apellido, capital, meses, interes] = usuarioGuardado;
-    let mensajeCapitalDolar;
-    if (capitalDolar === "Infinity") {
-        mensajeCapitalDolar = "Tasa de cambio no disponible";
-    } else {
-        mensajeCapitalDolar = capitalDolar;
-    }
+    const capitalConvertido = localStorage.getItem("capitalConvertido");
     const datos = `
     Nombre: ${nombre}
     Apellido: ${apellido}
@@ -140,7 +125,7 @@ function mostrarResultados() {
     Meses: ${meses}
     Interes: ${interes}
     Capital Final: ${capitalFinal}
-    Capital en U$D: ${capitalDolar}`;
+    Capital Convertido: ${capitalConvertido}`;
 
     Swal.fire({
         html: `<pre>${datos}</pre>`,
