@@ -154,13 +154,11 @@ function mostrarResultados() {
 // EVENTO PARA QUE APAREZCAN LOS RESULTADOS
 document.querySelector(".btn-calculo-compuesto").addEventListener("click", function () {
     interesCompuesto();
-    convertirADolares();
     mostrarResultados();
 });
 
 document.querySelector(".btn-calculo-simple").addEventListener("click", function () {
     interesSimple();
-    convertirADolares();
     mostrarResultados();
 });
 
