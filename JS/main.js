@@ -146,15 +146,13 @@ function mostrarResultados() {
 
 // EVENTO PARA QUE APAREZCAN LOS RESULTADOS
 document.querySelector(".btn-calculo-compuesto").addEventListener("click", function () {
-    almacenarDatos();
-    /* obtenerDatos(); */
+    obtenerDatos();
     interesCompuesto();
     mostrarResultados();
 });
 
 document.querySelector(".btn-calculo-simple").addEventListener("click", function () {
-    almacenarDatos();
-    /* obtenerDatos(); */
+    obtenerDatos();
     interesSimple();
     mostrarResultados();
 });
