@@ -1,6 +1,32 @@
 // DEFINICIONES
 let usuario = [];
 let capitalFinal;
+let tasaDeCambio;
+let capitalDolar;
+
+// Tasa de Conversion a Dolares desde una API
+function apiTasaDeCambio() {
+    fetch('https://currency-converter5.p.rapidapi.com/currency/convert?format=json&from=ARG&to=USD', {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '211ab785dfmsh2483a39879c7d27p1182c3jsnad0abb0279a7',
+            'X-RapidAPI-Host': 'currency-converter5.p.rapidapi.com'
+        }
+    })
+
+
+    .then(response => response.json())
+    .then(data => {
+        tasaDeCambio = data.rates.USD;
+        localStorage.setItem("tasaDeCambio", tasaDeCambio);
+        })
+    .catch (error => {
+        console.error(error);
+    });
+}
+
+// Tener la tasa luego de cargar DOM
+document.addEventListener("DOMContentLoaded", apiTasaDeCambio);
 
 // DOM
 contenedor = document.querySelector(".contenedor");
@@ -34,7 +60,7 @@ contenedor.innerHTML += `
 <input type="number" class="input-interes">
 </div>
 
-<button class="btn-enviar" onClick="obtenerDatos()">Enviar</button>
+
 
 <nav class="contenedor-opciones">
 <button class="btn-calculo btn-calculo-compuesto" onClick="interesCompuesto() mostrarResultados()">Calcular a interés compuesto</button>
@@ -44,16 +70,7 @@ contenedor.innerHTML += `
 `
 // Fin DOM
 
-const obtenerDatos = function () {
-    const nombre = document.querySelector(".input-nombre").value;
-    const apellido = document.querySelector(".input-apellido").value;
-    const capital = document.querySelector(".input-capital").value;
-    const meses = document.querySelector(".input-meses").value;
-    const interes = document.querySelector(".input-interes").value;
-    usuario.push(nombre, apellido, capital, meses, interes);
-    // Llamado a la funcion almacenarDatos
-    almacenarDatos();
-}
+
 
 
 
@@ -93,19 +110,39 @@ const interesSimple = function () {
     //usuario.push(capitalFinal)
 }
 
+// Convertir a Dolares
+function convertirADolares() {
+    tasaDeCambio = localStorage.getItem("tasaDeCambio");
+    if (tasaDeCambio !== "0") {
+        capitalDolar = capitalFinal / tasaDeCambio;
+        localStorage.setItem("capitalDolar", capitalDolar);
+    } else {
+        capitalDolar = 0;
+    }
+
+}
+
 
 // MOSTRAR LOS DATOS
 function mostrarResultados() {
     const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
     const capitalFinal = localStorage.getItem("capitalFinal");
+    const capitalDolar = localStorage.getItem("capitalDolar");
     const [nombre, apellido, capital, meses, interes] = usuarioGuardado;
+    let mensajeCapitalDolar;
+    if (capitalDolar === "Infinity") {
+        mensajeCapitalDolar = "Tasa de cambio no disponible";
+    } else {
+        mensajeCapitalDolar = capitalDolar;
+    }
     const datos = `
     Nombre: ${nombre}
     Apellido: ${apellido}
     Capital: ${capital}
     Meses: ${meses}
     Interes: ${interes}
-    Capital Final: ${capitalFinal}`;
+    Capital Final: ${capitalFinal}
+    Capital en U$D: ${capitalDolar}`;
 
     Swal.fire({
         html: `<pre>${datos}</pre>`,
@@ -119,11 +156,13 @@ function mostrarResultados() {
 // EVENTO PARA QUE APAREZCAN LOS RESULTADOS
 document.querySelector(".btn-calculo-compuesto").addEventListener("click", function () {
     interesCompuesto();
+    convertirADolares();
     mostrarResultados();
 });
 
 document.querySelector(".btn-calculo-simple").addEventListener("click", function () {
     interesSimple();
+    convertirADolares();
     mostrarResultados();
 });
 
@@ -137,6 +176,7 @@ function realizarOtroCalculo() {
 
     while (document.querySelector(".refresh").addEventListener("click"));
 }
+
 
 
 /* FIN */
