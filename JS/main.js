@@ -63,8 +63,8 @@ contenedor.innerHTML += `
 
 
 <nav class="contenedor-opciones">
-<button class="btn-calculo btn-calculo-compuesto" onClick="interesCompuesto() mostrarResultados()">Calcular a interés compuesto</button>
-<button class="btn-calculo btn-calculo-simple" onClick="interesSimple() mostrarResultados()">Calcular a interés simple</button>
+<button class="btn-calculo btn-calculo-compuesto">Calcular a interés compuesto</button>
+<button class="btn-calculo btn-calculo-simple">Calcular a interés simple</button>
 </nav>
 
 `
