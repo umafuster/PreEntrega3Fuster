@@ -113,7 +113,7 @@ function convertirADolar(){
    const usdMoneda = monedas.USD.exchangeRate;
    capitalConvertido = capitalFinal / usdMoneda;
    localStorage.setItem("capitalConvertido", capitalConvertido);
-   mostrarResultados();   
+   mostrarResultadosConvertidos();   
 }
 
 // Calcular a Euros
@@ -121,7 +121,7 @@ function convertirAEuro(){
     const eurMoneda = monedas.EUR.exchangeRate;
     capitalConvertido = capitalFinal / eurMoneda;
     localStorage.setItem("capitalConvertido", capitalConvertido);   
-    mostrarResultados();
+    mostrarResultadosConvertidos();
  }
 // FIN calcular monedas
 
@@ -134,15 +134,13 @@ function mostrarResultados() {
     const meses = localStorage.getItem('meses');
     const interes = localStorage.getItem('interes');
     const capitalFinal = localStorage.getItem('capitalFinal');
-    const capitalConvertido = localStorage.getItem("capitalConvertido");
     const datos = `
     Nombre: ${nombre}
     Apellido: ${apellido}
     Capital: ${capital}
     Meses: ${meses}
     Interes: ${interes}
-    Capital Final: ${capitalFinal}
-    Capital Convertido: ${capitalConvertido}`;
+    Capital Final: ${capitalFinal}`;
     
 
     Swal.fire({
@@ -151,6 +149,18 @@ function mostrarResultados() {
         confirmButtonText: "Volver"
     });
 }
+
+function mostrarResultadosConvertidos(){
+    const capitalConvertido = localStorage.getItem("capitalConvertido");
+    const capitalConvertidoShow = `
+    Capital Convertido: ${capitalConvertido}`;
+    Swal.fire({
+        html: `<pre>${capitalConvertidoShow}</pre>`,
+        position: "top",
+        confirmButtonText: "Volver"
+    });
+}
+
 // FIN MOSTRAR LOS DATOS
 
 
