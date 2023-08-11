@@ -116,7 +116,7 @@ function convertirAEuro(){
 function mostrarResultados() {
     const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
     const capitalFinal = localStorage.getItem("capitalFinal");
-    const {nombre, apellido, capital, meses, interes} = usuarioGuardado;
+    const [nombre, apellido, capital, meses, interes] = usuarioGuardado;
     const capitalConvertido = localStorage.getItem("capitalConvertido");
     const datos = `
     Nombre: ${nombre}
