@@ -52,8 +52,8 @@ contenedor.innerHTML += `
 
 
 <nav class="contenedor-opciones">
-<button class="btn-calculo btn-calculo-compuesto" onclick="mostrarResultados">Calcular a interés compuesto</button>
-<button class="btn-calculo btn-calculo-simple" onclick="mostrarResultados">Calcular a interés simple</button>
+<button class="btn-calculo btn-calculo-compuesto">Calcular a interés compuesto</button>
+<button class="btn-calculo btn-calculo-simple">Calcular a interés simple</button>
 </nav>
 
 `
@@ -117,7 +117,6 @@ function mostrarResultados() {
     const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
     const capitalFinal = localStorage.getItem("capitalFinal");
     const [nombre, apellido, capital, meses, interes] = usuarioGuardado;
-    const capitalConvertido = localStorage.getItem("capitalConvertido");
     const datos = `
     Nombre: ${nombre}
     Apellido: ${apellido}
@@ -126,6 +125,7 @@ function mostrarResultados() {
     Interes: ${interes}
     Capital Final: ${capitalFinal}
     Capital Convertido: ${capitalConvertido}`;
+    const capitalConvertido = localStorage.getItem("capitalConvertido");
 
     Swal.fire({
         html: `<pre>${datos}</pre>`,
