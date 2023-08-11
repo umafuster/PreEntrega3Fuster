@@ -128,12 +128,13 @@ function convertirAEuro(){
 
 // MOSTRAR LOS DATOS
 function mostrarResultados() {
-    const nombre = localStorage.getItem('nombre')
-    const apellido = localStorage.getItem('apellido')
-    const capital = localStorage.getItem('capital')
-    const meses = localStorage.getItem('meses')
-    const interes = localStorage.getItem('interes')
-    const capitalFinal = localStorage.getItem('capitalFinal')
+    const nombre = localStorage.getItem('nombre');
+    const apellido = localStorage.getItem('apellido');
+    const capital = localStorage.getItem('capital');
+    const meses = localStorage.getItem('meses');
+    const interes = localStorage.getItem('interes');
+    const capitalFinal = localStorage.getItem('capitalFinal');
+    const capitalConvertido = localStorage.getItem("capitalConvertido");
     const datos = `
     Nombre: ${nombre}
     Apellido: ${apellido}
@@ -142,7 +143,7 @@ function mostrarResultados() {
     Interes: ${interes}
     Capital Final: ${capitalFinal}
     Capital Convertido: ${capitalConvertido}`;
-    const capitalConvertido = localStorage.getItem("capitalConvertido");
+    
 
     Swal.fire({
         html: `<pre>${datos}</pre>`,
