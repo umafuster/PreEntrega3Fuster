@@ -52,8 +52,8 @@ contenedor.innerHTML += `
 
 
 <nav class="contenedor-opciones">
-<button class="btn-calculo btn-calculo-compuesto">Calcular a interés compuesto</button>
-<button class="btn-calculo btn-calculo-simple">Calcular a interés simple</button>
+<button class="btn-calculo btn-calculo-compuesto" onclick="mostrarResultados">Calcular a interés compuesto</button>
+<button class="btn-calculo btn-calculo-simple" onclick="mostrarResultados">Calcular a interés simple</button>
 </nav>
 
 `
