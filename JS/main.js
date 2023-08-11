@@ -59,20 +59,20 @@ contenedor.innerHTML += `
 `
 // Fin DOM
 
-/* const obtenerDatos = function () {
+const obtenerDatos = function () {
     const nombre = document.querySelector(".input-nombre").value;
     const apellido = document.querySelector(".input-apellido").value;
     const capital = document.querySelector(".input-capital").value;
     const meses = document.querySelector(".input-meses").value;
     const interes = document.querySelector(".input-interes").value;
     usuario.push(nombre, apellido, capital, meses, interes);
-} */
+}
 
 // JSON Y STORAGE
-function almacenarDatos() {
+/* function almacenarDatos() {
     localStorage.setItem("usuario", JSON.stringify(usuario));
     localStorage.setItem("capitalFinal", capitalFinal);
-}
+} */
 // FIN JSON Y STORAGE
 
 
@@ -122,7 +122,7 @@ function convertirAEuro(){
 
 // MOSTRAR LOS DATOS
 function mostrarResultados() {
-    const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
+    const usuarioGuardado = localStorage.getItem("usuario");
     const capitalFinal = localStorage.getItem("capitalFinal");
     const [nombre, apellido, capital, meses, interes] = usuarioGuardado;
     const datos = `
