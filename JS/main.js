@@ -102,7 +102,7 @@ function almacenarDatos() {
     localStorage.setItem("apellido", document.querySelector(".input-apellido").value);
     localStorage.setItem("capital", document.querySelector(".input-capital").value);
     localStorage.setItem("meses", document.querySelector(".input-meses").value);
-    localStorage.setItem("beneficio", document.querySelector(".input-interes").value);
+    localStorage.setItem("interes", document.querySelector(".input-interes").value);
     localStorage.setItem("capitalFinal", capitalFinal);
     localStorage.setItem("usuario", usuario);
 }
