@@ -59,6 +59,15 @@ contenedor.innerHTML += `
 `
 // Fin DOM
 
+const obtenerDatos = function () {
+    const nombre = document.querySelector(".input-nombre").value;
+    const apellido = document.querySelector(".input-apellido").value;
+    const capital = document.querySelector(".input-capital").value;
+    const meses = document.querySelector(".input-meses").value;
+    const interes = document.querySelector(".input-interes").value;
+    usuario.push(nombre, apellido, capital, meses, interes);
+    console.log(usuario);
+}
 
 // JSON Y STORAGE
 function almacenarDatos() {
@@ -138,11 +147,13 @@ function mostrarResultados() {
 
 // EVENTO PARA QUE APAREZCAN LOS RESULTADOS
 document.querySelector(".btn-calculo-compuesto").addEventListener("click", function () {
+    obtenerDatos();
     interesCompuesto();
     mostrarResultados();
 });
 
 document.querySelector(".btn-calculo-simple").addEventListener("click", function () {
+    obtenerDatos();
     interesSimple();
     mostrarResultados();
 });
