@@ -40,14 +40,6 @@ input {
   width: 100px;
 }
 
-.btn-enviar {
-  height: 30px;
-  width: 70px;
-  display: grid;
-  place-items: center;
-  margin: auto;
-  margin-bottom: 40px;
-}
 
 /* Fin Input y Botones */
 
@@ -66,7 +58,7 @@ section {
   grid-row-gap: 0px;
 }
 
-.completar-container{
+.completar-container {
   display: flex;
   justify-content: center;
   display: grid;
@@ -76,6 +68,20 @@ section {
   height: 100px;
   width: 200px;
 }
+
+.convertir-moneda {
+  margin-left: 44%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  width: 150px;
+}
+
 
 nav {
   display: flex;
@@ -91,5 +97,3 @@ h2 {
 }
 
 /* FIN FONTS */
-
-
